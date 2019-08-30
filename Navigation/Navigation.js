@@ -4,6 +4,7 @@ import {createStackNavigator, createAppContainer, createBottomTabNavigator} from
 import Search from '../Components/Search'
 import FilmDetail from '../Components/FilmDetail'
 import Favorites from "../Components/Favorites";
+import News from "../Components/News";
 
 const SearchStackNavigator = createStackNavigator({
     Search: {
@@ -33,6 +34,20 @@ const FavoritesStackNavigator = createStackNavigator({
         }
     }
 })
+const NewsStackNavigator = createStackNavigator({
+    News: {
+        screen: News,
+        navigationOptions: {
+            title: "Last News Films"
+        },
+        FilmDetail: {
+            screen: FilmDetail,
+            navigationOptions: {
+                title: "Détails du film"
+            }
+        }
+    }
+});
 const MoviesTabNavigator = createBottomTabNavigator({
        Search: {
             screen: SearchStackNavigator,
@@ -55,6 +70,17 @@ const MoviesTabNavigator = createBottomTabNavigator({
                     />
                 }
             }
+        },
+        News: {
+           screen: NewsStackNavigator,
+            navigationOptions: {
+               tabBarIcon: () => {
+                   return <Image
+                        source={require('../assets/news.png')}
+                        style={[styles.icon, styles.icon_new]}
+                   />
+               }
+            }
         }
     },
     {
@@ -71,6 +97,9 @@ const styles = StyleSheet.create({
     icon: {
         width: 30,
         height: 30
+    },
+    icon_new: {
+        width: 86
     }
 });
 
